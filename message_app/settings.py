@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 from django.conf.global_settings import DATABASES
 
@@ -82,14 +84,25 @@ WSGI_APPLICATION = 'message_app.wsgi.app'
 #     }
 # }
 
+# DATABASES ={
+#    "default":{
+#        "ENGINE":"django.db.backends.postgresql",
+#        "NAME":"neondb",
+#        "USER":"neondb_owner",
+#        "PASSWORD":"npg_QKNT0bdrgu2P",
+#        "HOST":"ep-restless-wildflower-adel9k4c-pooler.c-2.us-east-1.aws.neon.tech",
+#        "PORT":"5432",
+#    }
+# }
+
 DATABASES ={
    "default":{
        "ENGINE":"django.db.backends.postgresql",
-       "NAME":"neondb",
-       "USER":"neondb_owner",
-       "PASSWORD":"npg_QKNT0bdrgu2P",
-       "HOST":"ep-restless-wildflower-adel9k4c-pooler.c-2.us-east-1.aws.neon.tech",
-       "PORT":"5432",
+       "NAME":os.getenv("DB_NAME"),
+       "USER":os.getenv("DB_USER"),
+       "PASSWORD":os.getenv("DB_PASSWORD"),
+       "HOST":os.getenv("DB_HOST"),
+       "PORT":os.getenv("DB_PORT"),
    }
 }
 
